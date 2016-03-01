@@ -18,13 +18,16 @@ body{
   position: absolute;
   width: 100%;
   height: 100%;
+  opacity: 1;
+  transition: all 1s ease;
 
+}
+
+#loginform{
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-
-  transition: all 0.3s ease;
 }
 
 .animatediv{
@@ -70,5 +73,169 @@ body{
   margin-top: 50px;
   height: 50px;
   font-size: 22px;
+  transition: none;
+}
 
+#mainpanel{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: -2;
+}
+
+#footbar{
+  padding: 0 20px;
+  width:100%;
+  height: 40px;
+  background-color: rgb(44,61,80);
+  color: white;
+}
+
+#titlebar{
+  padding: 0 20px;
+  height: 100%;
+  background-color: rgb(44,61,80);
+  color: white;
+}
+
+#content{
+  height: 100%;
+}
+
+#title_systemname{
+  margin-left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+#title_username{
+  margin-left: -20px;
+  font-size: 18px;
+}
+
+#navbar{
+    height: 36px;
+    margin-left: 20px;
+}
+
+#devicelist{
+  position: absolute;
+  bottom:  0px;
+  width: 400px;
+  height: calc(100% - 36px);
+  background-color: #E4E2E2;
+  padding: 20px 0;
+}
+
+#devicelist_big{
+  position: absolute;
+  bottom:  0px;
+  width: 100%;
+  height: calc(100% - 36px);
+  background-color: #E4E2E2;
+  padding: 20px 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap:wrap;
+}
+
+#deviceinfo{
+  position: absolute;
+  bottom:  0px;
+  width: 400px;
+  height: calc(100% - 36px);
+  background-color: #E4E2E2;
+  padding: 20px 0;
+}
+
+#mapcontainer{
+  position: absolute;
+  top: 0px;
+  bottom:  0px;
+  right: 5px;
+  left:405px;
+  background-color: #E4E2E2;
+  padding: 5px;
+}
+
+#mapiframe{
+  width: 100%;
+  height: 100%;
+}
+
+.deviceblock{
+  width: 300px;
+  height: 60px;
+  background-color: gray;
+  border-radius: 10px;
+  margin: 10px auto;
+  left:0;
+  right: 0;
+}
+
+.deviceblock:hover{
+  cursor: pointer;
+    background-color: #446180;
+}
+
+.deviceblock_big{
+  width: 400px;
+  height: 200px;
+  background-color: gray;
+  border-radius: 10px;
+  margin: 15px 15px;
+}
+
+.deviceblock_big:hover{
+  cursor: pointer;
+  background-color: #446180;
+}
+
+.devicedetailblock{
+  width: 300px;
+  height: 200px;
+  background-color: gray;
+  border-radius: 10px;
+  margin: 10px auto 80px auto;
+  left:0;
+  right: 0;
+}
+
+.devicedetailblock:hover{
+  cursor: pointer;
+  background-color: #446180;
+}
+
+.devicebtnblock{
+  width: 300px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 10px;
+  margin: 10px auto;
+  left:0;
+  right: 0;
+}
+.devicebtnblock:hover{
+  cursor: pointer;
+  background-color: #446180;
+}
+
+
+#navbar p{
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+#onlinenumber{
+  color:#446180;
+}
+
+#offlinenumber{
+  color:red;
 }
