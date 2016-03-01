@@ -1,6 +1,5 @@
 import React from 'react';
-
-const Navbar = require('./navbar');
+import { Button, Icon } from 'antd';
 const Devicelist = require('./devicelist');
 const Devicelist_big = require('./devicelist_big');
 const Deviceinfo = require('./deviceinfo');
@@ -15,7 +14,7 @@ const Content = React.createClass({
       view: Store.getview()
     },function(){
       $('#mapcontainer').css({
-        'visibility':this.state.view == 1?'hidden':'visible'
+        //'visibility':this.state.view == 1?'hidden':'visible'
       })
     });
   },
@@ -37,7 +36,6 @@ const Content = React.createClass({
     }
     return (
       <div id="content">
-        <Navbar />
         {realcontent}
         <div key="mapcontainer" id="mapcontainer">
           <iframe id="mapiframe" frameBorder={0} src="http://ditu.baidu.com"></iframe>

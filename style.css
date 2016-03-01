@@ -96,8 +96,8 @@ body{
 #titlebar{
   padding: 0 20px;
   height: 100%;
-  background-color: rgb(44,61,80);
-  color: white;
+  background-color: white;
+  color: rgb(120,121,121);
 }
 
 #content{
@@ -105,13 +105,12 @@ body{
 }
 
 #title_systemname{
-  margin-left: 15px;
-  color: white;
-  font-size: 20px;
+  color: rgb(101,126,160);
+  font-size: 22px;
 }
 
 #title_username{
-  margin-left: -20px;
+  margin-left: -35px;
   font-size: 18px;
 }
 
@@ -124,18 +123,19 @@ body{
   position: absolute;
   bottom:  0px;
   width: 400px;
-  height: calc(100% - 36px);
-  background-color: #E4E2E2;
-  padding: 20px 0;
+  height: 100%;
+  background-color: rgb(222,222,222);
+  padding: 7px 0;
+  z-index: 2;
 }
 
 #devicelist_big{
   position: absolute;
   bottom:  0px;
-  width: 100%;
-  height: calc(100% - 36px);
-  background-color: #E4E2E2;
-  padding: 20px 0;
+  width: 75%;
+  height: 100%;
+  background-color: rgb(222,222,222);
+  padding: 7px 0;
 
   display: flex;
   flex-direction: row;
@@ -143,15 +143,37 @@ body{
   align-items: flex-start;
   align-content: flex-start;
   flex-wrap:wrap;
+
+  z-index: 2;
+}
+
+.deviceline{
+  width: 100%;
+  height: 1px;
+  background-color: rgb(224,226,230);
+}
+
+#devicecount_big,
+#devicecount{
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items: center;
+  color: rgb(174,174,174);
+  font-size: 13px;
+  background-color: white;
+  padding: 0px 20px;
+  width: 100%;
 }
 
 #deviceinfo{
   position: absolute;
   bottom:  0px;
   width: 400px;
-  height: calc(100% - 36px);
-  background-color: #E4E2E2;
-  padding: 20px 0;
+  height: 100%;
+  background-color: rgb(222,222,222);
+  padding: 7px 0;
 }
 
 #mapcontainer{
@@ -159,9 +181,9 @@ body{
   top: 0px;
   bottom:  0px;
   right: 5px;
-  left:405px;
+  left:400px;
   background-color: #E4E2E2;
-  padding: 5px;
+  padding: 0px 0px;
 }
 
 #mapiframe{
@@ -170,26 +192,23 @@ body{
 }
 
 .deviceblock{
-  width: 300px;
-  height: 60px;
-  background-color: gray;
-  border-radius: 10px;
-  margin: 10px auto;
-  left:0;
-  right: 0;
+  width: 100%;
+  height: 106px;
+  background-color: white;
 }
 
 .deviceblock:hover{
   cursor: pointer;
-    background-color: #446180;
+  background-color: #446180;
 }
 
 .deviceblock_big{
   width: 400px;
   height: 200px;
-  background-color: gray;
-  border-radius: 10px;
+  background-color: white;
   margin: 15px 15px;
+
+  flex-grow:1;
 }
 
 .deviceblock_big:hover{
@@ -200,8 +219,7 @@ body{
 .devicedetailblock{
   width: 300px;
   height: 200px;
-  background-color: gray;
-  border-radius: 10px;
+  background-color: white;
   margin: 10px auto 80px auto;
   left:0;
   right: 0;
@@ -215,8 +233,7 @@ body{
 .devicebtnblock{
   width: 300px;
   height: 20px;
-  background-color: gray;
-  border-radius: 10px;
+  background-color: white;
   margin: 10px auto;
   left:0;
   right: 0;
@@ -226,10 +243,16 @@ body{
   background-color: #446180;
 }
 
+#detailreturn{
+  height: 30px;
+  width: 100%;
+  background-color: white;
+}
 
 #navbar p{
   font-size: 14px;
   margin-top: 10px;
+  padding: 0 20px;
 }
 
 #onlinenumber{
@@ -238,4 +261,49 @@ body{
 
 #offlinenumber{
   color:red;
+}
+
+#btnsetting{
+
+}
+
+#btnlogout{
+  position: absolute;
+  right: 5px;
+  top:10px;
+  right: 20px;
+  top: 24px;
+}
+
+#btnlogout:hover{
+  cursor: pointer;
+}
+
+#btnexpand{
+  position: absolute;
+  border-radius: 0px;
+  top: 7px;
+  padding: 5px;
+  width: 34px;
+  left: 400px;
+  z-index: 2;
+}
+
+#btnshrink{
+  position: absolute;
+  border-radius: 0px;
+  top: 7px;
+  padding: 5px;
+  width: 34px;
+  left: 100%;
+  z-index: 2;
+}
+
+#btnrollback{
+  position: absolute;
+  border-radius: 0px;
+  padding: 5px;
+  height: 30px;
+  background-color: white;
+  border: none;
 }

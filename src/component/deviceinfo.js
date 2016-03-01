@@ -8,7 +8,14 @@ const Deviceinfo = React.createClass({
   },
   render() {
     return (
-      <QueueAnim onClick={this.handleReturn}  id="deviceinfo">
+      <QueueAnim id="deviceinfo">
+        <div id="detailreturn">
+          <Button onClick={this.handleReturn} id="btnrollback">
+          <Icon type="bars" />
+          返回设备列表
+          </Button>
+        </div>
+        <div className="deviceline" ></div>
         <div key="devicedetail" className="devicedetailblock">
         </div>
         <div key="devicebtnblock1" className="devicebtnblock">
