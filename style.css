@@ -111,6 +111,7 @@ body{
 
 #title_username{
   margin-left: -35px;
+  margin-top:4px;
   font-size: 18px;
 }
 
@@ -180,10 +181,9 @@ body{
   position: absolute;
   top: 0px;
   bottom:  0px;
-  right: 5px;
+  right: 0px;
   left:400px;
   background-color: #E4E2E2;
-  padding: 0px 0px;
 }
 
 #mapiframe{
@@ -217,28 +217,15 @@ body{
 }
 
 .devicedetailblock{
-  width: 300px;
+  width: 100%;
   height: 200px;
   background-color: white;
-  margin: 10px auto 80px auto;
+  margin: 0px auto;
   left:0;
   right: 0;
 }
 
 .devicedetailblock:hover{
-  cursor: pointer;
-  background-color: #446180;
-}
-
-.devicebtnblock{
-  width: 300px;
-  height: 20px;
-  background-color: white;
-  margin: 10px auto;
-  left:0;
-  right: 0;
-}
-.devicebtnblock:hover{
   cursor: pointer;
   background-color: #446180;
 }
@@ -306,4 +293,14 @@ body{
   height: 30px;
   background-color: white;
   border: none;
+}
+
+
+#plugin_video{
+  visibility: hidden;
+  position: absolute;
+  left:400px;
+  top: 60px;
+  width: calc(100% - 400px);
+  height: calc(100% - 60px);
 }

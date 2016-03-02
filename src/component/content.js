@@ -4,6 +4,7 @@ const Devicelist = require('./devicelist');
 const Devicelist_big = require('./devicelist_big');
 const Deviceinfo = require('./deviceinfo');
 const Store = require('../flux/stores/vssStore');
+const Multiwnd = require('./multiwnd');
 
 const Content = React.createClass({
   componentDidMount(){
@@ -16,6 +17,7 @@ const Content = React.createClass({
       $('#mapcontainer').css({
         //'visibility':this.state.view == 1?'hidden':'visible'
       })
+      Multiwnd.show(this.state.view == 2?true:false);
     });
   },
   getInitialState() {

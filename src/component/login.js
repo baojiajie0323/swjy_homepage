@@ -1,17 +1,51 @@
 import React from 'react';
-import { Button, Icon,QueueAnim,message  } from 'antd';
+import { Button, Icon,QueueAnim,message,Spin  } from 'antd';
 const Store = require('../flux/stores/vssStore');
+const Multiwnd = require('./multiwnd');
 
 const Login = React.createClass({
   componentDidMount(){
+    var _this2 = this;
     setTimeout(function(){
       $('#login_bk').css({
         "-webkit-filter":"blur(16px)"
       });
     },100)
-    setTimeout(function(){initinput();},800);
+    setTimeout(function(){_this2.initinput();},800);
 
     Store.addChangeListener(Store.notifytype.loginstate,this.handleloginstate);
+  },
+  initinput() {
+    if (!String.prototype.trim) {
+      (function() {
+        // Make sure we trim BOM and NBSP
+        var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+        String.prototype.trim = function() {
+          return this.replace(rtrim, '');
+        };
+      })();
+    }
+
+    [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+      // in case the input is already filled..
+      if( inputEl.value.trim() !== '' ) {
+        classie.add( inputEl.parentNode, 'input--filled' );
+      }
+
+      // events:
+      inputEl.addEventListener( 'focus', onInputFocus );
+      inputEl.addEventListener( 'blur', onInputBlur );
+    } );
+
+    function onInputFocus( ev ) {
+      classie.add( ev.target.parentNode, 'input--filled' );
+    }
+
+    function onInputBlur( ev ) {
+      if( ev.target.value.trim() === '' ) {
+        classie.remove( ev.target.parentNode, 'input--filled' );
+      }
+    }
   },
   getInitialState() {
     return {
@@ -34,6 +68,9 @@ const Login = React.createClass({
       })
     },300)
     message.success(bsuccess?'登录成功':"您已退出登录");
+    if(bsuccess){
+      Multiwnd.init();
+    }
   },
   handleLogin(){
     Store.setloginsuccess(true);

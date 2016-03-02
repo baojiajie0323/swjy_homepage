@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon,QueueAnim,Row,Col,Popconfirm,Message  } from 'antd';
 const Store = require('../flux/stores/vssStore');
-
+const DivceEle = require('./deviceelement');
 const Devicelist = React.createClass({
   handleClickblock(e){
     Store.setview(2);
@@ -21,17 +21,16 @@ const Devicelist = React.createClass({
           <Icon type="right" />
         </Button>
         <div className="deviceline" ></div>
-        <div key='deviceblock1' className="deviceblock"></div>
+        <DivceEle key='deviceblock1' />
         <div className="deviceline" ></div>
-        <div key='deviceblock2' className="deviceblock"></div>
+        <DivceEle key='deviceblock2' />
         <div className="deviceline" ></div>
-        <div key='deviceblock3' className="deviceblock"></div>
+        <DivceEle key='deviceblock3' />
         <div className="deviceline" ></div>
-        <div key='deviceblock4' className="deviceblock"></div>
+        <DivceEle key='deviceblock4' />
         <div className="deviceline" ></div>
-        <div key='deviceblock5' className="deviceblock"></div>
-        <div className="deviceline" ></div>
-        <div key='deviceblock6' className="deviceblock"></div>
+        <DivceEle key='deviceblock5' />
+
       </QueueAnim>
     );
   },

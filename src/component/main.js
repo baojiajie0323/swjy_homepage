@@ -21,7 +21,7 @@ const Main = React.createClass({
   render() {
     return (
       <div id="mainpanel">
-        <QueueAnim type={['bottom','top']} style={{height:'60px'}} delay={100} >
+        <QueueAnim type={['bottom','top']} style={{height:'60px'}}>
           {this.state.loginsuccess?[
             <Titlebar key='titlebar' />
           ]:null}
