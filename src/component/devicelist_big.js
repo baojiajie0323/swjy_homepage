@@ -2,22 +2,34 @@ import React from 'react';
 import { Button, Icon,QueueAnim,Row,Col,Popconfirm,Message  } from 'antd';
 const Store = require('../flux/stores/vssStore');
 const DeviceElement = require('./deviceelement_big');
+
 const Devicelist_big = React.createClass({
-  handleClickblock(e){
-    Store.setview(2);
+  componentDidMount(){
+    Store.addChangeListener(Store.notifytype.devicechange,this.handledevicelist);
+  },
+  getInitialState(){
+    return ({
+      devicelist:Store.getdevicelist()
+    });
   },
   handleshrink(e){
     Store.setview(0);
     e.stopPropagation();
   },
   render() {
+    var devicecount = this.state.devicelist.length + '个设备';
+    var deviceelement = this.state.devicelist.map(function(data){
+      return <QueueAnim type="scale" >
+        <DeviceElement element={data} key='deviceblock_big' />
+      </QueueAnim>
+    })
     return (
-      <div onClick={this.handleClickblock} id="devicelist_big">
+      <div id="devicelist_big">
         <QueueAnim type="bottom" style={{width:'100%'}}>
-        <div key="devicecount_big" id="devicecount_big">
-          <p>设备列表</p>
-          <p>4个设备</p>
-        </div>
+          <div key="devicecount_big" id="devicecount_big">
+            <p>设备列表</p>
+            <p>{devicecount}</p>
+          </div>
         </QueueAnim>
         <Button id="btnshrink" onClick={this.handleshrink} type="primary">
           <Icon type="left" />
@@ -25,24 +37,7 @@ const Devicelist_big = React.createClass({
         <div className="deviceline" ></div>
 
         <div id="devicegrid">
-          <QueueAnim delay={20} type="scale" >
-          <DeviceElement key='deviceblock_big1' />
-          </QueueAnim>
-          <QueueAnim delay={40} type="scale" >
-          <DeviceElement key='deviceblock_big2' />
-          </QueueAnim>
-          <QueueAnim delay={60} type="scale" >
-          <DeviceElement key='deviceblock_big3' />
-          </QueueAnim>
-          <QueueAnim delay={80} type="scale" >
-          <DeviceElement key='deviceblock_big4' />
-          </QueueAnim>
-          <QueueAnim delay={100} type="scale" >
-          <DeviceElement key='deviceblock_big5' />
-          </QueueAnim>
-          <QueueAnim delay={120} type="scale" >
-          <DeviceElement key='deviceblock_big6' />
-          </QueueAnim>
+          {deviceelement}
         </div>
       </div>
     );

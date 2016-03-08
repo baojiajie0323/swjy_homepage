@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Icon,QueueAnim,message,Spin  } from 'antd';
 const Store = require('../flux/stores/vssStore');
+const Action = require('../flux/actions/vssActions');
 const Multiwnd = require('./multiwnd');
 
 const Login = React.createClass({
@@ -74,10 +75,11 @@ const Login = React.createClass({
     message.success(bsuccess?'登录成功':"您已退出登录");
     if(bsuccess){
       Multiwnd.init();
+      Action.getdevicelist();
     }
   },
   handleLogin(){
-    Store.setloginsuccess(true);
+    Action.login($('#input-username').val(),$('#input-password').val());
   },
   render() {
     return (

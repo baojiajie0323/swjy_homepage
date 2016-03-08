@@ -3,35 +3,12 @@ import { Button, Icon,QueueAnim,Row,Col,Popconfirm,Message  } from 'antd';
 const Store = require('../flux/stores/vssStore');
 
 const Deviceelement = React.createClass({
-  getInitialState(){
-    return ({
-      hoverstate:false
-    });
-  },
-  handleOver(e){
-    // if(e.target.className.indexOf('deviceblock') < 0){
-    //   e.stopPropagation();
-    //   return;
-    // }
-    // this.setState({
-    //   hoverstate:true
-    // })
-    // e.stopPropagation();
-  },
-  handleOut(e){
-    // console.log(e.target.className);
-    // if(e.target.className.indexOf('deviceblock') < 0){
-    //   e.stopPropagation();
-    //   return;
-    // }
-    // this.setState({
-    //   hoverstate:false
-    // })
-    // e.stopPropagation();
+  handleClickblock(){
+    Store.gotodetail(this.props.element.id);
   },
   render() {
     var pstyle={
-      color:'rgb(56,131,222)',
+      color:this.props.element.isalarm?'rgb(253,65,66)':'rgb(56,131,222)',
       fontSize:'13px',
       marginLeft:'20px',
       fontWeight:'bold'
@@ -40,10 +17,10 @@ const Deviceelement = React.createClass({
       marginLeft:'15px',
       width:'66px',
       height:'66px',
-      backgroundColor:'rgb(56,131,222)',
+      backgroundColor:this.props.element.isalarm?'rgb(253,65,66)':'rgb(56,131,222)',
       borderRadius:'33px',
       pointerEvents:'none',
-      backgroundImage:'url("./img/蓝设备小.png")',
+      backgroundImage: this.props.element.isalarm?'url("./img/红设备小.png")':'url("./img/蓝设备小.png")',
       backgroundRepeat:'no-repeat',
       backgroundPosition:'13px 16px'
     }
@@ -69,76 +46,32 @@ const Deviceelement = React.createClass({
       lineHeight:'18px',
     }
     var statestyle ={
-      color:'rgb(56,131,222)',
+      color:this.props.element.isalarm?'rgb(253,65,66)':'rgb(56,131,222)',
       fontSize:'15px'
     }
-    var operatestyle = {
-      position:'absolute',
-      display:'flex',
-      flexDirection:'column',
-      justifyContent:'center',
-      backgroundColor:'rgb(56,131,222)',
-      width:'55px',
-      height:'100%',
-      right:'0px',
-      visibility:this.state.hoverstate?'visible':'hidden'
-    }
-    var iconstyle1={
-      position:'absolute',
-      backgroundColor:'rgb(56,131,222)',
-      width:'55px',
-      height:'36px',
-      right:'0px',
-      top:'0px',
-      color:'white',
-      fontSize: '25px',
-      padding: '5px'
-    }
-    var iconstyle2={
-      position:'absolute',
-      backgroundColor:'rgb(56,131,222)',
-      width:'55px',
-      height:'36px',
-      right:'0px',
-      top:'36px',
-      color:'white',
-      fontSize: '25px',
-      padding: '5px'
-    }
-    var iconstyle3={
-      position:'absolute',
-      backgroundColor:'rgb(56,131,222)',
-      width:'55px',
-      height:'36px',
-      right:'0px',
-      top:'72px',
-      color:'white',
-      fontSize: '25px',
-      padding: '5px'
-    }
+
+    var text_name = this.props.element.name;
+    var text_police = '就医民警： ';
+    this.props.element.police.forEach(function(police){
+      text_police += police.name + ' ';
+    });
+    var text_prisoner = '在押犯人： ';
+    this.props.element.prisoner.forEach(function(prisoner){
+      text_prisoner += prisoner.name + ' ';
+    });
+    var text_time = '运行时间： ' + this.props.element.runtime;
     return (
-      <Row type="flex" justify="start" align="middle" onMouseOver={this.handleOver} onMouseOut={this.handleOut} className="deviceblock">
-        <p style={pstyle}>2</p>
+      <Row type="flex" justify="start" align="middle" onClick={this.handleClickblock} className="deviceblock">
+        <p style={pstyle}>{this.props.index}</p>
         <div style={devicestyle}>
         </div>
         <div style={formstyle}>
-          <p style={p1style}>江门监狱所外就医设备</p>
-          <p style={p2style}>就医民警： 王申明、张林、刘涛</p>
-          <p style={p2style}>在押烦人： 李玉</p>
-          <p style={p2style}>运行时间： 2小时</p>
+          <p style={p1style}>{text_name}</p>
+          <p style={p2style}>{text_police}</p>
+          <p style={p2style}>{text_prisoner}</p>
+          <p style={p2style}>{text_time}</p>
         </div>
-        {/*
-          {this.state.hoverstate?
-            [
-              <Icon style={iconstyle1} type="video-camera" />,
-              <Icon style={iconstyle2} type="notification" />,
-              <Icon style={iconstyle3} type="environment-o" />
-            ]:
-            <p style={statestyle}>正常</p>
-          }
-          */}
-
-          <p style={statestyle}>正常</p>
+        <p style={statestyle}>{this.props.element.isalarm?'报警中':'正常'}</p>
       </Row>
     );
   },

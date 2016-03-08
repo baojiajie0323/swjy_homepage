@@ -48,7 +48,7 @@ const Content = React.createClass({
     }else if(this.state.view == 1){ //设备
       realcontent = <Devicelist_big />
     }else if(this.state.view == 2){ //详情
-      realcontent = <Deviceinfo />
+      realcontent = <Deviceinfo deviceid={Store.getcurdeviceid()} />
     }else{
       realcontent = <Devicelist />
     }
