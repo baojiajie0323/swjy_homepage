@@ -9,13 +9,17 @@ var StoreEvent = EventConst.StoreEvent;
 
 var _loginsuccess = false;
 var _view = 0; // 0--总览    1--设备    2--单个详情
-/**
+var _lastview = 0;
+var _deviceview = 2; //0--视频   1--报警    2--地图
+ /**
  * store
  */
 var VssStore = assign({}, EventEmitter.prototype, {
   notifytype:{
     loginstate:1,
-    viewstate:2
+    viewstate:2,
+    devicechange:3,
+
   },
 
   setloginsuccess: function(bsuccess){
@@ -28,6 +32,9 @@ var VssStore = assign({}, EventEmitter.prototype, {
   },
 
   setview: function(curview){
+    if(curview != 2){
+      _lastview = curview;
+    }
     _view = curview;
     this.emit(this.notifytype.viewstate);
   },
@@ -35,6 +42,25 @@ var VssStore = assign({}, EventEmitter.prototype, {
   getview: function(){
     return _view;
   },
+
+  restoreview : function(){
+    _view = _lastview;
+    this.emit(this.notifytype.viewstate);
+  },
+
+  setdeviceview: function(curview){
+    _deviceview = curview;
+    this.emit(this.notifytype.viewstate);
+  },
+
+  getdeviceview: function(){
+    return _deviceview;
+  },
+
+  updatedevice:function(deviceinfo){
+    
+  },
+
    /**
    * @param {function} callback
    */

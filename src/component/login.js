@@ -10,7 +10,11 @@ const Login = React.createClass({
       $('#login_bk').css({
         "-webkit-filter":"blur(16px)"
       });
-    },100)
+      $('#login_logo').css({
+        "-webkit-filter":"blur(0px)",
+        'transition': 'all 2s ease'
+      });
+    },400)
     setTimeout(function(){_this2.initinput();},800);
 
     Store.addChangeListener(Store.notifytype.loginstate,this.handleloginstate);
@@ -80,27 +84,29 @@ const Login = React.createClass({
       <div id="loginpanel"  >
           <div id="login_bk">
           </div>
-          <QueueAnim id="loginform" type={['right','left']} delay={[800,0]} duration={[1000,500]} interval={[200,100]} >
-            {this.state.loginsuccess ? null:[
-              <div key='login_logo' id="login_logo">
-              </div>,
-              <p key='login_title' id="login_title">所外就医防逃脱后台配置管理系统</p>,
-              <span key='input-username' className="input input--hoshi">
-                <input className="input__field input__field--hoshi" type="text" id="input-username" />
-                <label className="input__label input__label--hoshi input__label--hoshi-color-1" htmlFor="input-username">
-                  <span className="input__label-content input__label-content--hoshi">请输入用户名</span>
-                </label>
-              </span>,
-              <span key='input-password' className="input input--hoshi">
-                <input className="input__field input__field--hoshi" type="password" id="input-password" />
-                <label className="input__label input__label--hoshi input__label--hoshi-color-1" htmlFor="input-password">
-                  <span className="input__label-content input__label-content--hoshi">请输入密码</span>
-                </label>
-              </span>,
-              <Button key='login_btnlogin' id="login_btnlogin" onClick={this.handleLogin} type="primary">
-                登录
-              </Button>
-            ]}
+          <QueueAnim id="loginform" type={['right','left']} >
+            <div key='login_logo' id="login_logo">
+            </div>
+              <p key='login_title' id="login_title">所外就医防逃脱后台配置管理系统</p>
+            <span key='input-username' className="input input--hoshi">
+              <input className="input__field input__field--hoshi" type="text" id="input-username" />
+
+              <label className="input__label input__label--hoshi input__label--hoshi-color-1" htmlFor="input-username">
+                <span className="input__label-content input__label-content--hoshi">账号</span>
+              </label>
+              <Icon className="inputIcon" type="user" />
+            </span>
+            <span key='input-password' className="input input--hoshi">
+              <input className="input__field input__field--hoshi" type="password" id="input-password" />
+
+              <label className="input__label input__label--hoshi input__label--hoshi-color-1" htmlFor="input-password">
+                <span className="input__label-content input__label-content--hoshi">密码</span>
+              </label>
+              <Icon className="inputIcon" type="lock" />
+            </span>
+            <Button key='login_btnlogin' id="login_btnlogin" onClick={this.handleLogin} type="primary">
+              登录
+            </Button>
           </QueueAnim>
       </div>
     );

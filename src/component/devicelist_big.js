@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon,QueueAnim,Row,Col,Popconfirm,Message  } from 'antd';
 const Store = require('../flux/stores/vssStore');
-
+const DeviceElement = require('./deviceelement_big');
 const Devicelist_big = React.createClass({
   handleClickblock(e){
     Store.setview(2);
@@ -23,24 +23,27 @@ const Devicelist_big = React.createClass({
           <Icon type="left" />
         </Button>
         <div className="deviceline" ></div>
-        <QueueAnim delay={20} type="scale" >
-        <div key='deviceblock_big1' className="deviceblock_big"></div>
-        </QueueAnim>
-        <QueueAnim delay={40} type="scale" >
-        <div key='deviceblock_big2' className="deviceblock_big"></div>
-        </QueueAnim>
-        <QueueAnim delay={60} type="scale" >
-        <div key='deviceblock_big3' className="deviceblock_big"></div>
-        </QueueAnim>
-        <QueueAnim delay={80} type="scale" >
-        <div key='deviceblock_big4' className="deviceblock_big"></div>
-        </QueueAnim>
-        <QueueAnim delay={100} type="scale" >
-        <div key='deviceblock_big5' className="deviceblock_big"></div>
-        </QueueAnim>
-        <QueueAnim delay={120} type="scale" >
-        <div key='deviceblock_big6' className="deviceblock_big"></div>
-        </QueueAnim>
+
+        <div id="devicegrid">
+          <QueueAnim delay={20} type="scale" >
+          <DeviceElement key='deviceblock_big1' />
+          </QueueAnim>
+          <QueueAnim delay={40} type="scale" >
+          <DeviceElement key='deviceblock_big2' />
+          </QueueAnim>
+          <QueueAnim delay={60} type="scale" >
+          <DeviceElement key='deviceblock_big3' />
+          </QueueAnim>
+          <QueueAnim delay={80} type="scale" >
+          <DeviceElement key='deviceblock_big4' />
+          </QueueAnim>
+          <QueueAnim delay={100} type="scale" >
+          <DeviceElement key='deviceblock_big5' />
+          </QueueAnim>
+          <QueueAnim delay={120} type="scale" >
+          <DeviceElement key='deviceblock_big6' />
+          </QueueAnim>
+        </div>
       </div>
     );
   },

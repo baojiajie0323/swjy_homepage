@@ -19,11 +19,11 @@ const Tabui = React.createClass({
     var _width = '200%';
     var _height = '100%';
     if(!this.props.selected){
-      _borderRadius = '34px';
-      _left = '11px';
-      _top = '11px';
-      _width = '68px';
-      _height = '68px';
+      _borderRadius = '27px';
+      _left = '18px';
+      _top = '18px';
+      _width = '54px';
+      _height = '54px';
     }
     var animatebkstyle = {
       position: 'absolute',
@@ -33,13 +33,13 @@ const Tabui = React.createClass({
       left: _left,
       top: _top,
       backgroundColor: 'rgb(56,131,222)',
-      transition: 'all 0.3s ease',
+      transition: 'all 0.2s ease',
       zIndex: '-1'
     }
     var iconstyle = {
-      fontSize: '40px',
+      fontSize: '27px',
       color: 'white',
-      marginLeft: '25px'
+      marginLeft: '32px'
     }
     var pstyle = {
       marginLeft:'30px',
@@ -47,7 +47,7 @@ const Tabui = React.createClass({
       fontSize:'18px'
     }
     return (
-      <div onClick={this.props.clickcb} onMouseOver={this.props.movecb} on style={uistyle} >
+      <div onClick={this.props.clickcb} style={uistyle} >
         <div style={animatebkstyle} >
         </div>
         <Icon style={iconstyle} type={this.props.icontype} />

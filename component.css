@@ -46,12 +46,20 @@
 .input__label-content {
 	position: relative;
 	display: block;
-	padding: 1.1em 0;
+	//padding: 1.1em 0;
 	width: 100%;
-	font-size: 2.5vh;
+	font-size: 2.7vh;
+	padding-left: 38px;
   font-family: '微软雅黑';
 	font-weight: lighter;
-	color:rgba(0, 0, 0, 0.24);
+	color:rgb(57,132,233);
+}
+
+.inputIcon{
+	position: absolute;
+	color: rgb(57,132,233);
+	font-size: 27px;
+	top: 15px;
 }
 
 .graphic {
@@ -139,13 +147,14 @@
 }
 
 .input__field--hoshi {
-	margin-top: 1em;
-	padding: 0.85em 0.15em;
+	//margin-top: 1em;
+	//padding: 0.85em 0.15em;
 	width: 100%;
 	background: transparent;
-	color: #595F6E;
+	color: rgb(57,132,233);
 	font-family: '微软雅黑';
-	font-size: 2.5vh;
+	font-size: 2.7vh;
+	padding-left: 38px;
 }
 
 .input__label--hoshi {

@@ -13,9 +13,9 @@ const Titlebar = React.createClass({
             <img width={46} height={49} style={{marginTop:'5px'}} src="./img/ind_logo.png" />
           </Col>
           <Col span="6">
-            <p id="title_systemname">所外就医防逃脱系统</p>
+            <p id="title_systemname">所外就医防逃脱后台配置管理系统</p>
           </Col>
-          <Col span="15" />
+          <Col span="14" />
           <Col span="1">
 
               <Icon type="user" />
@@ -23,6 +23,9 @@ const Titlebar = React.createClass({
           <Col span="1">
             <p id="title_username">root</p>
           </Col>
+          <Tooltip placement="bottom" title="系统配置">
+          <Icon id="btnsetting" type="setting" />
+          </Tooltip>
           <Tooltip placement="bottom" title="退出系统">
           <Popconfirm placement="bottom" title={'确定要退出系统吗？'} onConfirm={this.logout}>
           <Icon id="btnlogout" type="logout" />

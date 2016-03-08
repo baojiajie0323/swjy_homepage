@@ -19,7 +19,7 @@ body{
   width: 100%;
   height: 100%;
   opacity: 1;
-  transition: all 1s ease;
+  //transition: all 1s ease;
 
 }
 
@@ -40,22 +40,22 @@ body{
   bottom:0;
   left:0;
   right: 0;
-  background-image: url('./img/pic.png');
+  background-image: url('./img/pic.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  transition: all 2s linear;
+  transition: all 2s ease;
   z-index: -1;
 }
 
 #login_logo{
   margin-top: 5%;
-  width: 200px;
-  height: 200px;
-  border-radius: 200px;
+  width: 167px;
+  height: 167px;
+  //border-radius: 200px;
   background-image: url('./img/logo.png');
   background-repeat: no-repeat;
   background-size: cover;
-  -webkit-box-shadow: 0 0 5px rgba(255,255,255,.6), inset 0 0 5px rgba(255,255,255,1);
+  -webkit-filter:blur(3px);
 }
 
 #login_title{
@@ -63,17 +63,20 @@ body{
   font-size: 32px;
   font-weight: bold;
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   letter-spacing: 1px;
-  color: #447084;
+  color: rgb(36,79,133);
 }
 
 #login_btnlogin{
   width: 495px;
-  margin-top: 50px;
-  height: 50px;
+  margin-top: 25px;
+  height: 62px;
   font-size: 22px;
   transition: none;
+  background-color: rgb(56,131,222);
+  border: none;
+  border-radius: 3px;
 }
 
 #mainpanel{
@@ -96,16 +99,17 @@ body{
 #titlebar{
   padding: 0 20px;
   height: 100%;
-  background-color: white;
-  color: rgb(120,121,121);
+  background-color: rgb(39,104,184);
+  color: white;
 }
 
 #content{
   height: 100%;
+  background-color: rgb(222,225,230);
 }
 
 #title_systemname{
-  color: rgb(101,126,160);
+  color: white;
   font-size: 22px;
 }
 
@@ -123,10 +127,11 @@ body{
 #devicelist{
   position: absolute;
   bottom:  0px;
-  width: 400px;
+  width: 362px;
   height: 100%;
-  background-color: rgb(222,222,222);
-  padding: 7px 0;
+  background-color: white;
+  //padding: 7px 0;
+  top:7px;
   z-index: 2;
 }
 
@@ -135,21 +140,35 @@ body{
   bottom:  0px;
   width: 75%;
   height: 100%;
-  background-color: rgb(222,222,222);
+  background-color: rgb(222,225,230);
   padding: 7px 0;
+  //top: 7px;
 
   display: flex;
   flex-direction: row;
-  justify-content:center;
-  align-items: flex-start;
-  align-content: flex-start;
+  justify-content:flex-start;
+  align-items: center;
   flex-wrap:wrap;
 
   z-index: 2;
 }
 
+#devicegrid{
+  padding: 10px 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap:wrap;
+  height: calc(100% - 30px);
+}
+
 .deviceline{
-  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  //width: 90%;
   height: 1px;
   background-color: rgb(224,226,230);
 }
@@ -164,17 +183,18 @@ body{
   color: rgb(174,174,174);
   font-size: 13px;
   background-color: white;
-  padding: 0px 20px;
+  padding: 0px 30px;
   width: 100%;
 }
 
 #deviceinfo{
   position: absolute;
   bottom:  0px;
-  width: 400px;
+  width: 362px;
   height: 100%;
-  background-color: rgb(222,222,222);
-  padding: 7px 0;
+  background-color: white;
+  top:7px;
+  //padding: 7px 0;
 }
 
 #mapcontainer{
@@ -182,8 +202,19 @@ body{
   top: 0px;
   bottom:  0px;
   right: 0px;
-  left:400px;
+  left:362px;
   background-color: #E4E2E2;
+}
+
+#alarminfo{
+  position: absolute;
+  top: 0px;
+  bottom:  0px;
+  right: 0px;
+  left:362px;
+  background-color: rgb(222, 225, 230);
+  visibility: hidden;
+  padding: 20px;
 }
 
 #mapiframe{
@@ -193,41 +224,28 @@ body{
 
 .deviceblock{
   width: 100%;
-  height: 106px;
+  height: 108px;
   background-color: white;
 }
 
 .deviceblock:hover{
   cursor: pointer;
-  background-color: #446180;
 }
 
 .deviceblock_big{
-  width: 400px;
-  height: 200px;
+  width: 234px;
+  height: 240px;
   background-color: white;
-  margin: 15px 15px;
-
+  margin: 5px 5px;
+  border-color: rgb(223,225,230);
+  border-style: solid;
+  border-width: 1px;
   flex-grow:1;
 }
 
 .deviceblock_big:hover{
   cursor: pointer;
-  background-color: #446180;
-}
-
-.devicedetailblock{
-  width: 100%;
-  height: 200px;
-  background-color: white;
-  margin: 0px auto;
-  left:0;
-  right: 0;
-}
-
-.devicedetailblock:hover{
-  cursor: pointer;
-  background-color: #446180;
+  //background-color: #446180;
 }
 
 #detailreturn{
@@ -251,13 +269,17 @@ body{
 }
 
 #btnsetting{
+  position: absolute;
+  right: 60px;
+  top: 24px;
+}
 
+#btnsetting:hover{
+  cursor: pointer;
 }
 
 #btnlogout{
   position: absolute;
-  right: 5px;
-  top:10px;
   right: 20px;
   top: 24px;
 }
@@ -269,10 +291,10 @@ body{
 #btnexpand{
   position: absolute;
   border-radius: 0px;
-  top: 7px;
+  top: 0px;
   padding: 5px;
   width: 34px;
-  left: 400px;
+  left: 362px;
   z-index: 2;
 }
 
@@ -299,8 +321,8 @@ body{
 #plugin_video{
   visibility: hidden;
   position: absolute;
-  left:400px;
+  left:362px;
   top: 60px;
-  width: calc(100% - 400px);
+  width: calc(100% - 362px);
   height: calc(100% - 60px);
 }

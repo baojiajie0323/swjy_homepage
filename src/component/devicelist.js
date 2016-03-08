@@ -12,7 +12,7 @@ const Devicelist = React.createClass({
   },
   render() {
     return (
-      <QueueAnim type="bottom" onClick={this.handleClickblock} id="devicelist">
+      <QueueAnim type="bottom" duration={500} interval={50} onClick={this.handleClickblock} id="devicelist">
         <div key="devicecount" id="devicecount">
           <p>设备列表</p>
           <p>4个设备</p>
@@ -20,16 +20,17 @@ const Devicelist = React.createClass({
         <Button id="btnexpand" onClick={this.handleexpand} type="primary">
           <Icon type="right" />
         </Button>
-        <div className="deviceline" ></div>
+        <div key="deviceline1" className="deviceline" ></div>
         <DivceEle key='deviceblock1' />
-        <div className="deviceline" ></div>
+        <div key="deviceline2" className="deviceline" ></div>
         <DivceEle key='deviceblock2' />
-        <div className="deviceline" ></div>
+        <div key="deviceline3" className="deviceline" ></div>
         <DivceEle key='deviceblock3' />
-        <div className="deviceline" ></div>
+        <div key="deviceline4" className="deviceline" ></div>
         <DivceEle key='deviceblock4' />
-        <div className="deviceline" ></div>
+        <div key="deviceline5" className="deviceline" ></div>
         <DivceEle key='deviceblock5' />
+        <div key="deviceline6" className="deviceline" ></div>
 
       </QueueAnim>
     );
