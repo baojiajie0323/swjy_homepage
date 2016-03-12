@@ -4,6 +4,9 @@ const Store = require('../flux/stores/vssStore');
 const Action = require('../flux/actions/vssActions');
 const Multiwnd = require('./multiwnd');
 
+
+var isStartSEEvent = false;
+
 const Login = React.createClass({
   componentDidMount(){
     var _this2 = this;
@@ -74,12 +77,39 @@ const Login = React.createClass({
     },300)
     message.success(bsuccess?'登录成功':"您已退出登录");
     if(bsuccess){
-      Multiwnd.init();
+      this.startSystemEvent();
+      if(!Multiwnd.init(function(startport){
+        Action.login_platform(startport,Multiwnd.getlocalip());
+      })){
+        //如果已经初始化过了。直接登录平台
+        Multiwnd.getstartport(function(startport){
+            Action.login_platform(startport,Multiwnd.getlocalip());
+        })
+      }
       Action.getdevicelist();
     }
   },
   handleLogin(){
     Action.login($('#input-username').val(),$('#input-password').val());
+  },
+  startSystemEvent(){
+  	if(!isStartSEEvent){
+      if(typeof(SystemEventAPIProxy) == "undefined"){
+        return;
+      }
+  		SystemEventAPIProxy.setURL("./sysevent.do");
+  		SystemEventAPIProxy.setSourcePage("homepage_index.jsp");
+  		SystemEventAPIProxy.addListener("homepage_index_jsp",this.systemEventListener);
+  		SystemEventAPIProxy.setLoginURL("./swjyweb/homepage/index.html");
+  		isStartSEEvent = true;
+  	}
+  },
+  systemEventListener(){
+    if(e == "15015"){ //告警上报
+      if(data != null){
+			  console.log('systemevent:',JSON.stringify(data));
+		  }
+    }
   },
   render() {
     return (

@@ -163,7 +163,6 @@ body{
   align-content: flex-start;
   flex-wrap:wrap;
   height: calc(100% - 30px);
-  overflow: auto;
 }
 
 .deviceline{
@@ -326,12 +325,4 @@ body{
   top: 60px;
   width: calc(100% - 362px);
   height: calc(100% - 60px);
-}
-
-#pageinfo{
-  width: 100%;
-  position: absolute;
-  bottom: 50px;
-  margin-left: 10px;
-  transform: scale(1.3);
 }

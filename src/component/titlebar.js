@@ -1,10 +1,17 @@
 import React from 'react';
 import { Button, Icon,QueueAnim,Row,Col,Popconfirm,Message,Tooltip  } from 'antd';
 const Store = require('../flux/stores/vssStore');
+const Action = require('../flux/actions/vssActions');
+const Multiwnd = require('./multiwnd');
 
 const Titlebar = React.createClass({
   logout(){
-    Store.setloginsuccess(false);
+    var device = Store.getdevice(this.props.deviceid);
+    Action.stopplay(Multiwnd.getplayid('0'),device.puid,device.chnid);
+    Action.logout();
+  },
+  handleSetting(){
+    window.open('../ui/common/index.jsp');
   },
   render() {
     return (
@@ -24,7 +31,7 @@ const Titlebar = React.createClass({
             <p id="title_username">root</p>
           </Col>
           <Tooltip placement="bottom" title="系统配置">
-          <Icon id="btnsetting" type="setting" />
+          <Icon id="btnsetting" onClick={this.handleSetting} type="setting" />
           </Tooltip>
           <Tooltip placement="bottom" title="退出系统">
           <Popconfirm placement="bottom" title={'确定要退出系统吗？'} onConfirm={this.logout}>

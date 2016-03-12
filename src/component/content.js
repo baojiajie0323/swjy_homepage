@@ -10,6 +10,20 @@ const Alarmpanel = require('./alarminfo');
 const Content = React.createClass({
   componentDidMount(){
     Store.addChangeListener(Store.notifytype.viewstate,this.handleviewstate);
+    Store.addChangeListener(Store.notifytype.devicechange,this.handledevicelist);
+  },
+  handledevicelist(){
+    setTimeout(function(){
+      Store.getdevicelist().forEach(function(data){
+        var obj = new Object();
+        obj.id = data.id;
+        obj.name = data.name;
+        obj.x = data.posx;
+        obj.y = data.posy;
+        obj.image = "images/point2.png";
+        window.frames["mapiframe"].contentWindow.addMarker(obj);
+      });
+    },2000);
   },
   handleviewstate(){
     this.setState({
@@ -64,7 +78,7 @@ const Content = React.createClass({
       <div id="content">
         {realcontent}
         <div key="mapcontainer" id="mapcontainer">
-          <iframe id="mapiframe" frameBorder={0} src="http://ditu.baidu.com"></iframe>
+          <iframe id="mapiframe" frameBorder={0} src="../gmap/v-common/index.jsp?showBorder=0"></iframe>
         </div>
         <Alarmpanel />
         <p style={pstyle}>无法浏览视频，请安装视频浏览插件</p>

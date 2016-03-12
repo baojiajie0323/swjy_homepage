@@ -34,14 +34,21 @@ const treeData = [{
 const Alarminfo = React.createClass({
   componentDidMount(){
     Store.addChangeListener(Store.notifytype.viewstate,this.handleviewstate);
+    Store.addChangeListener(Store.notifytype.alarmchange,this.handlealarmchange);
   },
   getInitialState(){
     return (
       {
         showalarm:false,
-        value: ['0-0-0']
+        value: ['0-0-0'],
+        alarmlist:Store.getalarmlist()
       }
     )
+  },
+  handlealarmchange(){
+    this.setState({
+      alarmlist:Store.getalarmlist()
+    })
   },
   onChange(value) {
     console.log('onChange ', value, arguments);
@@ -73,6 +80,16 @@ const Alarminfo = React.createClass({
         width: 360,
       },
     };
+
+    var alarm = null;
+    if(this.state.showalarm){
+      alarm = this.state.alarmlist.map(function(data){
+        var key = data.id;
+        return <Alert key={key} message={data.name}
+          description={data.description + ' ————时间：' + data.serverTimeS}
+          type="info" />
+      });
+    }
     return (
       <div type='right' id="alarminfo">
         <Row style={style}>
@@ -81,31 +98,7 @@ const Alarminfo = React.createClass({
           <Button type="primary">刷新</Button>
         </Row>
         <QueueAnim duration={[300,0]} interval={[60,0]} >
-        {this.state.showalarm?[
-          <Alert key="1" message="逃脱报警"
-            description="调试设备，属于误报 ————时间：2016-02-15 14:22:33"
-            type="success" />,
-          <Alert key="2" message="逃脱报警"
-            description="调试设备，属于误报 ————时间：2016-02-15 14:22:33"
-            type="info" />,
-          <Alert key="3" message="防拆报警"
-            description="调试设备，属于误报 ————时间：2016-02-15 14:22:33"
-            type="warn" />,
-          <Alert key="4"
-            message="防拆报警"
-            description="犯人A将设备手环拆除，企图逃跑，被及时追回 ————时间：2016-02-15 14:22:33"
-            type="error" />,
-            <Alert key="5" message="逃脱报警"
-              description="犯人A将设备手环拆除，企图逃跑，被及时追回 ————时间：2016-02-15 14:22:33"
-              type="info" />,
-            <Alert key="6" message="逃脱报警"
-              description="犯人A将设备手环拆除，企图逃跑，被及时追回 ————时间：2016-02-15 14:22:33"
-              type="warn" />,
-            <Alert key="7"
-              message="防拆报警"
-              description="犯人A将设备手环拆除，企图逃跑，被及时追回 ————时间：2016-02-15 14:22:33"
-              type="error" />
-        ]:null}
+        {alarm}
         </QueueAnim>
 
       </div>

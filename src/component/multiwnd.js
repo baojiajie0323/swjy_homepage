@@ -9,12 +9,12 @@ function PostCmd(cmd){
 }
 
 var Multiwnd = {
-  init(){
+  init(cb_startport){
     if(_hasinit == true)
-      return;
+      return false;
     var _this2 = this;
     _hasinit = true;
-    setTimeout(this.getstartport, 500);
+    setTimeout(function(){_this2.getstartport(cb_startport)}, 500);
     this.setplaywindowcount(1);
     this.addEvent(document.getElementById('plugin_video'), 'PluginNotify', function(notify) {
         var notifyJson = JSON.parse(notify);
@@ -29,6 +29,7 @@ var Multiwnd = {
             PostCmd(cmd);
         }
     });
+    return true;
   },
   show(bvisible){
     $('#plugin_video').css({
@@ -56,13 +57,13 @@ var Multiwnd = {
     PostCmd(cmd);
   },
   //发送 getstartport 给插件
-  getstartport(){
+  getstartport(cb_startport){
     var cmd = {"cmd": "getstartport"};
     var response =  PostCmd(cmd);
     var code = response.code;
     if(code == 0){
         _startport = response.data.startport;
-        //login_platform();  //暂时注释
+        cb_startport(_startport);
     }else{
         Message.error("获取起始端口失败");
     }

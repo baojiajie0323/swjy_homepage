@@ -12,6 +12,11 @@ const Devicelist_big = React.createClass({
       devicelist:Store.getdevicelist()
     });
   },
+  handledevicelist(){
+    this.setState({
+      devicelist:Store.getdevicelist()
+    })
+  },
   handleshrink(e){
     Store.setview(0);
     e.stopPropagation();

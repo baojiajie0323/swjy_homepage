@@ -1,14 +1,35 @@
 import React from 'react';
 import { Button, Icon,QueueAnim,Row,Col,Popconfirm,Message  } from 'antd';
 const Store = require('../flux/stores/vssStore');
+const Action = require('../flux/actions/vssActions');
+const Multiwnd = require('./multiwnd');
 
 const Deviceelement = React.createClass({
   handleClickblock(){
     Store.gotodetail(this.props.element.id);
+    var device = Store.getdevice(this.props.element.id);
+    Action.getalarmlist(device.puid);
+    Action.startplay(Multiwnd.getplayid('0'),device.puid,device.chnid);
   },
   render() {
+    var isalarm = false;
+
+    var bkcolor = 'rgb(56,131,222)';
+    var bkimage = 'url("./img/device_blue_small.png")';
+    var statusText = '正常';
+    if(isalarm){
+      bkcolor = 'rgb(253,65,66)';
+      bkimage = 'url("./img/device_red_small.png")';
+      statusText = '报警';
+    }else if(!this.props.element.isonline){
+      bkcolor = '#BDC0C0';
+      bkimage = 'url("./img/device_gray_small.png")';
+      statusText = '离线';
+    }
+
+
     var pstyle={
-      color:this.props.element.isalarm?'rgb(253,65,66)':'rgb(56,131,222)',
+      color: bkcolor,
       fontSize:'13px',
       marginLeft:'20px',
       fontWeight:'bold'
@@ -17,10 +38,10 @@ const Deviceelement = React.createClass({
       marginLeft:'15px',
       width:'66px',
       height:'66px',
-      backgroundColor:this.props.element.isalarm?'rgb(253,65,66)':'rgb(56,131,222)',
+      backgroundColor: bkcolor,
       borderRadius:'33px',
       pointerEvents:'none',
-      backgroundImage: this.props.element.isalarm?'url("./img/红设备小.png")':'url("./img/蓝设备小.png")',
+      backgroundImage: bkimage,
       backgroundRepeat:'no-repeat',
       backgroundPosition:'13px 16px'
     }
@@ -46,7 +67,7 @@ const Deviceelement = React.createClass({
       lineHeight:'18px',
     }
     var statestyle ={
-      color:this.props.element.isalarm?'rgb(253,65,66)':'rgb(56,131,222)',
+      color:bkcolor,
       fontSize:'15px'
     }
 
@@ -71,7 +92,7 @@ const Deviceelement = React.createClass({
           <p style={p2style}>{text_prisoner}</p>
           <p style={p2style}>{text_time}</p>
         </div>
-        <p style={statestyle}>{this.props.element.isalarm?'报警中':'正常'}</p>
+        <p style={statestyle}>{statusText}</p>
       </Row>
     );
   },

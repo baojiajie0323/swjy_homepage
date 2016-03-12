@@ -6,6 +6,7 @@ var assign = require('object-assign');
 var EventConst = require('../event-const');
 var ActionEvent = EventConst.ActionEvent;
 var StoreEvent = EventConst.StoreEvent;
+var Multiwnd = require('../../component/multiwnd');
 
 var _loginsuccess = false;
 var _view = 0; // 0--总览    1--设备    2--单个详情
@@ -14,6 +15,8 @@ var _deviceview = 2; //0--视频   1--报警    2--地图
 
 var _curDeviceID = 0;
 var _devicelist = [];
+var _alarmlist = [];
+var _currentpage = 1;
  /**
  * store
  */
@@ -22,6 +25,7 @@ var VssStore = assign({}, EventEmitter.prototype, {
     loginstate:1,
     viewstate:2,
     devicechange:3,
+    alarmchange:4,
 
   },
 
@@ -62,7 +66,18 @@ var VssStore = assign({}, EventEmitter.prototype, {
 
   gotodetail:function(curDeviceID){
     _curDeviceID = curDeviceID;
+    var device = this.getdevice(_curDeviceID);
+    //Action.getalarmlist(device.puid);
+    //Action.startplay(Multiwnd.getplayid('0'),device.puid,device.chnid);
     this.setview(2);
+  },
+
+  getCurrentPage:function(){
+    return _currentpage;
+  },
+
+  setCurrentPage:function(page){
+    _currentpage = page;
   },
 
   getcurdeviceid:function(){
@@ -85,6 +100,15 @@ var VssStore = assign({}, EventEmitter.prototype, {
       }
     }
     return null;
+  },
+
+  updatealarmlist:function(alarminfo){
+    _alarmlist = alarminfo;
+    this.emit(this.notifytype.alarmchange);
+  },
+
+  getalarmlist:function(){
+    return _alarmlist;
   },
 
    /**

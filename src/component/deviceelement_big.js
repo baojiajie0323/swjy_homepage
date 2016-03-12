@@ -1,21 +1,40 @@
 import React from 'react';
 import { Button, Icon,QueueAnim,Row,Col,Popconfirm,Message  } from 'antd';
 const Store = require('../flux/stores/vssStore');
+const Multiwnd = require('./multiwnd');
+const Action = require('../flux/actions/vssActions');
 
 const DeviceelementBig = React.createClass({
   handleClickblock(){
     Store.gotodetail(this.props.element.id);
+    var device = Store.getdevice(this.props.element.id);
+    Action.getalarmlist(device.puid);
+    Action.startplay(Multiwnd.getplayid('0'),device.puid,device.chnid);
   },
   render() {
+    var isalarm = false;
+    var bkcolor = 'rgb(56,131,222)';
+    var bkimage = 'url("./img/device_blue_big.png")';
+    var statusText = '正常';
+    if(isalarm){
+      bkcolor = 'rgb(253,65,66)';
+      bkimage = 'url("./img/device_red_big.png")';
+      statusText = '报警';
+    }else if(!this.props.element.isonline){
+      bkcolor = '#BDC0C0';
+      bkimage = 'url("./img/device_gray_big.png")';
+      statusText = '离线';
+    }
+
     var devicestyle = {
       marginLeft:'61px',
       marginTop:'25px',
       marginBottom:'15px',
       width:'112px',
       height:'112px',
-      backgroundColor:this.props.element.isalarm?'rgb(253,65,66)':'rgb(56,131,222)',
+      backgroundColor:bkcolor,
       borderRadius:'56px',
-      backgroundImage:this.props.element.isalarm?'url("./img/红设备大.png")':'url("./img/蓝设备大.png")',
+      backgroundImage:bkimage,
       backgroundRepeat:'no-repeat',
       backgroundPosition:'23px 28px'
     }
@@ -41,7 +60,7 @@ const DeviceelementBig = React.createClass({
     }
     var statestyle ={
       position:'absolute',
-      color:this.props.element.isalarm?'rgb(253,65,66)':'rgb(56,131,222)',
+      color:bkcolor,
       fontSize:'15px',
       bottom:'5px',
       right:'10px'
@@ -67,7 +86,7 @@ const DeviceelementBig = React.createClass({
           <p style={p2style}>{text_prisoner}</p>
           <p style={p2style}>{text_time}</p>
         </div>
-        <p style={statestyle}>{this.props.element.isalarm?'报警中':'正常'}</p>
+        <p style={statestyle}>{statusText}</p>
       </div>
     );
   },
